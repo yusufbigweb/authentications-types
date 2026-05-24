@@ -1,9 +1,11 @@
 import app from "./app.js";
 
+
+// Authentication Basic Method:
 const basicAuth = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
-
+// condition if not authorization show error
   if (!authHeader) {
     res.setHeader("WWW-Authenticate", "Basic");
     return res.status(401).send("Authentication Required");
@@ -20,6 +22,8 @@ const basicAuth = (req, res, next) => {
   }
 
 };
+
+//App Router
 
 app.get("/secure", basicAuth, (req, res) => {
   res.send("Welcome! You are authenticated");
